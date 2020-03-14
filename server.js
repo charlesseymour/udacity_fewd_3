@@ -41,9 +41,12 @@ app.get('/', function (request, response) {
 // POST route
 app.post('/', function (request, response) {
 	let data = request.body;
+	console.log("data = " + JSON.stringify(data));
 	projectData['temperature'] = data.temperature;
-	projectData['date'] = data.date;
-	projectData['user_response'] = data.userResponse;
+	projectData['date'] = data.date,
+	projectData['user_response'] = data.user_response;
+	console.log("projectData = " + JSON.stringify(projectData));
+	response.send(projectData);
 })
 
 
