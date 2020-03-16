@@ -38,13 +38,30 @@ async function postWeather( url = '', data = {}) {
 		console.log("error", error);
 	}
 }
+
+// Display data in index.html
+async function displayData() {
+	const request = await fetch('/data');
+	try {
+		const data = await request.json();
+		console.log(data);
+		document.getElementById("date").innerHTML = data.date;
+		document.getElementById("temp").innerHTML = data.temperature;
+		document.getElementById("content").innerHTML = data.user_response;
+	} catch(error) {
+		console.log("error", error);
+	}
+}
+
 function performAction(e){
 	const zip = document.getElementById('zip').value;
 	const user_response = document.getElementById('feelings').value;
-	getWeather(zip).then(function(data){
+	getWeather(zip)
+	.then(function(data){
 		console.log("temperature = " + data.main['temp']);
 		postWeather('/', {temperature: data.main['temp'], date: newDate, user_response: user_response});
-	});
+	})
+	.then(displayData);
 }
 
 

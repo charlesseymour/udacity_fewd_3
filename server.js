@@ -34,7 +34,7 @@ function listening () {
 }
 
 // GET route
-app.get('/', function (request, response) {
+app.get('/data', function (request, response) {
     response.send(projectData);
 });
 
@@ -47,7 +47,7 @@ app.post('/', function (request, response) {
 	projectData['user_response'] = data.user_response;
 	console.log("projectData = " + JSON.stringify(projectData));
 	response.send(projectData);
-})
+});
 
 
 
